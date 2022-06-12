@@ -9,29 +9,37 @@
 /*   Updated: 2022/06/10 18:15:14 by spetrosy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include <sys/types.h>
+#include <sys/uio.h>
 #include <stdio.h>
-#include <stdlib.h>
+#include <unistd.h>
+#include <fcntl.h>
+#include "get_next_line.h"
 
-char *src(char *str, static char *dest)
+char *addstr1(int fd)
 {
-	int i = 0;
-
-	while (str[i])
+	int i;
+	static char src[BUFFER_SIZE];
+	
+	i = 0;
+	read(fd, src, BUFFER_SIZE);
+	while (i <= BUFFER_SIZE && src[i] != '\n')
 	{
-		dest[i] = str[i];
 		i++;
 	}
-	dest[i] = '\0';
-	return (dest);
+	while (src[i] != '\n')
+	{
+		
+	}
+	src[i] = '\0';
+	return (src);
 }
 
 int main(void)
 {
-	char *str = "Hello world!";
-	static char dest[100];
-	printf("%s\n", src(str, dest));
-	printf("%s\n", src(str, dest));
-	printf("%s\n", src(str, dest));
-	printf("%s\n", src(str, dest));
+	int a = open("gtn.txt", O_RDONLY);
+	printf("%s\n", addstr1(a));
+	printf("%s\n", addstr1(a));
 	return (0);
 }
