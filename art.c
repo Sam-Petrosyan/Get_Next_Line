@@ -1,20 +1,17 @@
 #include <stdio.h>
 
-char *str(char *s)
+int add (int x)
 {
-	static char **src;
-
-	src = &s;
-	return (*src);
+	static int sum = 0;
+	sum += x;
+	return sum;
 }
 
-int main(void)
+int main()
 {
-	char *b;
-
-	b = "Hello";
-	printf("%s\n", str(b));
-	printf("%s\n", str(b));
-	printf("%s\n", str(b));
+	printf("%d\n", add(10));
+	printf("%d\n", add(10));
+	printf("%d\n", add(10));
+	printf("%d\n", add(10));
 	return (0);
 }
