@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: spetrosy <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/19 16:36:43 by spetrosy          #+#    #+#             */
+/*   Updated: 2022/06/19 19:38:22 by spetrosy         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <stdio.h>
 #include <sys/types.h>
 #include <sys/stat.h>
@@ -6,16 +18,23 @@
 #include <unistd.h>
 #include "get_next_line.h"
 
-char *addstr(int fd)
+char *get_next_line(int fd)
 {
-	static char s[BUFFER_SIZE];
-	read(fd, s, BUFFER_SIZE);
-	return (s);
+	static char *line1;
+	char *line2;
+
+	line1 = ft_readtxt(fd);
+	line2 = retline(line1);
+
+
+	printf("new buffer: %s\n", line1);
+	return (line2);
 }
 
 int main(void)
 {
-	int f = open("gtn.txt", O_RDONLY);
-	printf("%s", addstr(f));
+	int fd = open("gtn.txt", O_RDONLY);
+	printf("Line returned: %s\n", get_next_line(fd));
+	printf("Line returned: %s\n", get_next_line(fd));
 	return (0);
 }
