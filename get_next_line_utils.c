@@ -6,43 +6,71 @@
 /*   By: spetrosy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 17:38:19 by spetrosy          #+#    #+#             */
-/*   Updated: 2022/06/17 20:36:29 by spetrosy         ###   ########.fr       */
+/*   Updated: 2022/06/10 18:15:14 by spetrosy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include <fcntl.h>
-#include <unistd.h>
+#include <sys/types.h>
+#include <sys/uio.h>
 #include <stdio.h>
+#include <unistd.h>
+#include <fcntl.h>
 #include "get_next_line.h"
 
-char *src(char fd)
+char *readtxt(int fd)
 {
-	static char *str;
-	char *line;
-	int fd;
-	int i;
-	int j;
+	static char src[BUFFER_SIZE + 1];
 
-	read(fd, str, 20);
+	read(fd, src, BUFFER_SIZE);
+	
+	return (src);
+}
+
+int f_strlen(char *string)
+{
+	int i;
 
 	i = 0;
-	while (1)
-	{
-		if (str[i] == '\n')
-			break;
+	while (string[i])
 		i++;
+	return (i);
+}
+
+int ftn_strlen(char *dest)
+{
+	int i;
+	
+	i = 0;
+	while (dest[i] && dest[i] != '\n')
+		i++;
+	return (i);
+}
+
+char *retline(char *str)
+{
+	char *line;
+	int j;
+	int x;
+
+	j = ftn_strlen(str);
+	line = (char *)malloc(sizeof(char) * (j + 1));
+	x = 0;
+	while (x <= j)
+	{
+		line[x] = str[x];
+		x++;
 	}
-	line = (char *)malloc (sizeof(char) * (i + 1));
+	line[x] = '\0';
 	return (line);
 }
 
 int main(void)
 {
-	int f = open("gtn.txt", O_RDONLY);
-	char *a = str(f);
-	char *b = src(a);
-	printf("%s\n", a);
-	printf("%s\n", src(b));
+	int i = open("gtn.txt", O_RDONLY);
+	char *a = readtxt(i);
+	printf("It's a readtxt: %s\n", a);
+	printf("It's a ftn_strlen: %d\n", ftn_strlen(a));
+	printf("It's a retline: %s\n", retline(a));
 	return (0);
 }
