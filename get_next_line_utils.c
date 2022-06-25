@@ -6,7 +6,7 @@
 /*   By: spetrosy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 17:38:19 by spetrosy          #+#    #+#             */
-/*   Updated: 2022/06/19 19:38:25 by spetrosy         ###   ########.fr       */
+/*   Updated: 2022/06/25 19:24:43 by spetrosy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,14 +40,14 @@ int ft_strlen(const char *s)
 	return (i);
 }
 
-int ftn_strlen(char *dest)
+int ftn_strlen(const char *dest)
 {
 	int i;
 	
 	i = 0;
 	while (dest[i] && dest[i] != '\n')
 		i++;
-	return (i);
+	return (i + 1);
 }
 
 char *retline(char *str)
@@ -59,7 +59,7 @@ char *retline(char *str)
 	j = ftn_strlen(str);
 	line = (char *)malloc(sizeof(char) * (j + 1));
 	x = 0;
-	while (x <= j)
+	while (x < j)
 	{
 		line[x] = str[x];
 		x++;

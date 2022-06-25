@@ -6,7 +6,7 @@
 /*   By: spetrosy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 19:25:47 by spetrosy          #+#    #+#             */
-/*   Updated: 2022/06/19 19:32:23 by spetrosy         ###   ########.fr       */
+/*   Updated: 2022/06/25 19:21:39 by spetrosy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,15 @@
 #ifndef BUFFER_SIZE
 # define BUFFER_SIZE 42
 
+#endif
+
 char *get_next_line(int fd);
 
 char *ft_readtxt(int fd);
 
-int f_strlen(char *string);
+int ft_strlen(const char *s);
 
-int ftn_strlen(char *dest);
+int ftn_strlen(const char *dest);
 
 char *retline(char *str);
 
@@ -29,5 +31,4 @@ char *ft_strjoin(char const *s1, char const *s2);
 
 char *new_stat(char *arr, int start);
 
-#endif
 #endif
