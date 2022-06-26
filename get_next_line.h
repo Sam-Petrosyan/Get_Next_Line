@@ -6,7 +6,7 @@
 /*   By: spetrosy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 19:25:47 by spetrosy          #+#    #+#             */
-/*   Updated: 2022/06/25 19:21:39 by spetrosy         ###   ########.fr       */
+/*   Updated: 2022/06/26 12:44:59 by spetrosy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,20 @@
 
 char *get_next_line(int fd);
 
-char *ft_readtxt(int fd);
+char *rest(char *str);
 
-int ft_strlen(const char *s);
+char *readtxt(char *str, int fd);
 
-int ftn_strlen(const char *dest);
+char *ft_strchr(const char *s, int c);
+
+int ftn_strlen(const char *s);
+
+int ft_strlen(const char *src);
 
 char *retline(char *str);
 
-char *ft_strjoin(char const *s1, char const *s2);
+char *ft_strjoin(char *s1, char *s2);
 
-char *new_stat(char *arr, int start);
+char *ft_strdup(char *s1);
 
 #endif
